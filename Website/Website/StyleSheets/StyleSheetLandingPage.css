@@ -1,6 +1,4 @@
-﻿
-
-.mapouter {
+﻿.mapouter {
     position: center;
     text-align: right;
     margin: auto;
@@ -14,4 +12,6 @@
     height: 470px;
     width: 500px;
 }
+
+
 
