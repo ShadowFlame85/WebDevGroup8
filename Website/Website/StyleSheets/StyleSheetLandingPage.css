@@ -1,4 +1,6 @@
-﻿
+﻿.landerimage {
+    background: no-repeat center center scroll;
+}
 
 .mapouter {
     position: center;
