@@ -180,9 +180,48 @@
 
             <div id="loginregist">
                 <div class="break"></div>
-                <div class="content"></div>
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-6 login-form-1">
+                            <h3>Inloggen</h3>
+                            <form method="post">
+                                <div class="form-group">
+                                    <input name="mailadres" type="text" class="form-control" placeholder="E-mailadres*" value="@Request.QueryString["mailadres"]" />
+                                </div>
+                                <div class="form-group">
+                                    <input name="wachtwoord" type="password" class="form-control" placeholder="Wachtwoord*" value="@Request.QueryString["wachtwoord"]" />
+                                </div>
+                                <div class="form-group" align="center">
+                                    <input type="submit" class="btnSubmit" value="Inloggen" name="inlog" />
+                                </div>
+                                <div class="form-group" align="center">
+                                    <a href="#" class="btnForgetPwd">Wachtwoord vergeten?</a>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-6 login-form-2">
+                            <h3>Registreren</h3>
+                            <form method="post">
+                                <div class="form-group">
+                                    <input name="naam" type="text" class="form-control" placeholder="Naam*" value="@Request.Form["naam"]" />
+                                </div>
+                                <div class="form-group">
+                                    <input name="gebruikersnaam" type="text" class="form-control" placeholder="Gebruikersnaam*" value="@Request.Form["gebruikersnaam"]" />
+                                </div>
+                                <div class="form-group">
+                                    <input name="mailadres" type="text" class="form-control" placeholder="E-mailadres*" value="@Request.Form["mailadres"]" />
+                                </div>
+                                <div class="form-group">
+                                    <input name="wachtwoord" type="password" class="form-control" placeholder="Wachtwoord*" value="@Request.Form["wachtwoord"]" />
+                                </div>
+                                <div class="form-group" align="center">
+                                    <input name="regist" type="submit" class="btnSubmit" value="Registreren" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
-            </div>
+                </div>
             <a class="gotupbtn" href="#"><i class="fas fa-chevron-up"></i></a>
         </div>
     </main>

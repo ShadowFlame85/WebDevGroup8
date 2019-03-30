@@ -84,6 +84,10 @@ main{
     height: auto;
     background: #EBE5DB;
     border-radius: 10px;
+    padding: 20px;
+}
+.content h3{
+    text-align: center;
 }
 
 .gotupbtn {
