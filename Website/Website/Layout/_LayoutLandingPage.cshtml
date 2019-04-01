@@ -2,53 +2,68 @@
 <html>
 <head>
 
+       <link href="~/StyleSheets/StyleSheetLandingPage.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="~/StyleSheets/StyleSheetLandingPage.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <title>@Page.Title</title>
-    @RenderSection("head", required: false)
+    @RenderSection("head", required: false) <!--HIEROVER VRAGEN WAT HET INHOUD-->
 
 </head>
 <body>
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="~/LanderPage.cshtml"><b>Home</b></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#home">Home</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#maps">Maps</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#list">List</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#gallery">Gallery</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#loginregist">Login/Regist</a>
-                </li>
-
-            </ul>
+    <header>
+        <div id="home">
+            <div class="landerimage">
+                <img src="~/Image/wp2520498.jpg" />
+            </div>
         </div>
-    </nav>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#maps">Maps</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#list">List</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Gallery</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#loginregist">Login/Regist</a>
+                    </li>
+
+                </ul>
+                <form class="navbar-form navbar-right" action="#">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="search">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                                <a class="glyphicon glyphicon-search"></a>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </nav>
+    </header>
     <main>
-        @RenderBody()
+            @RenderBody()
     </main>
     <footer>
 

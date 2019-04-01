@@ -1,4 +1,9 @@
 ﻿.mapouter {
+﻿.landerimage {
+    background: no-repeat center center scroll;
+}
+
+.mapouter {
     position: center;
     text-align: right;
     margin: auto;
