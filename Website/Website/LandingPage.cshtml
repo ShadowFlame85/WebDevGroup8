@@ -1,23 +1,116 @@
-﻿@{
+﻿@using WebMatrix.Data
+@{
     Layout = "~/Layout/_LayoutLandingPage.cshtml";
+    Page.Title = "Homepage";
 
-}
+    var naam = "";
+    var gebruikersnaam = "";
+    string mailadres = "";
+    string wachtwoord = "";
+
 
 <!DOCTYPE html>
 <html>
 <head>
 </head>
+    if (Request.Form["inlog"] != null)
+    {
+        mailadres = Request.Form["mailadres"];
+        wachtwoord = Request.Form["wachtwoord"];
+        string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Huwelijken.mdf;Integrated Security=True"; //HIEROVER VRAGEN
+        string provider = "System.Data.SqlClient";
+        Database db = Database.OpenConnectionString(connectionString, provider);
+        //Hieronder geef je aan dat apestaartje 0 mailadres is
+        var query = db.QuerySingle("SELECT Wachtwoord, Registratie_Id FROM ... WHERE Mailadres=@0", mailadres);
+        if (query.Wachtwoord == wachtwoord)
+        {
+            Session["ID"] = query.Registratie_Id;
+            Response.Redirect("~/#");
+        }
+        else
+        {
 
-<body>
+        }
+        db.Close();
+    }
+    if (Request.Form["regist"] != null)
+    {
+        naam = Request.Form["naam"];
+        gebruikersnaam = Request.Form["gebruikersnaam"];
+        mailadres = Request.Form["mailadres"];
+        wachtwoord = Request.Form["wachtwoord"];
+        string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\....mdf;Integrated Security=True";
+        string provider = "System.Data.SqlClient";
+        Database db = Database.OpenConnectionString(connectionString, provider);
+        var insertCommand = "INSERT INTO ... (naam, gebruikersnaam, mailadres, wachtwoord) VALUES(@0, @1, @2, @3)";
+        db.Execute(insertCommand, naam, gebruikersnaam, mailadres, wachtwoord);
+        Response.Redirect("~/#");
+    }
+}
+
 
     <div class="imageouter">
         <div class="landerimage"><img src="~/Image/wp2520498.jpg"/></div>
+<div id="home">
+    <div class="landerimage">
+        <img src="~/Image/wp2520498.jpg" />
     </div>
+    </div>
+<div id="maps">
     <br />
     <div class="mapouter">
         <div class="gmap_canvas"><iframe width="500" height="470" id="gmap_canvas" src="https://maps.google.com/maps?q=&t=&z=9&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div>
     </div>
+</div>
 
-</body>
+<div id="list">
 
-</html>
+</div>
+
+<div id="gallery">
+
+</div>
+
+<div id="loginregist">
+    <div class="container login-container">
+        <div class="row">
+            <div class="col-md-6 login-form-1">
+                <h3>Inloggen</h3>
+                <form method="post">
+                    <div class="form-group">
+                        <input name="mailadres" type="text" class="form-control" placeholder="E-mailadres *" value="@Request.QueryString["mailadres"]" />
+                    </div>
+                    <div class="form-group">
+                        <input name="wachtwoord" type="password" class="form-control" placeholder="Wachtwoord *" value="@Request.QueryString["wachtwoord"]" />
+                    </div>
+                    <div class="form-group" align="center">
+                        <input type="submit" class="btnSubmit" value="Inloggen" name="inlog" />
+                    </div>
+                    <div class="form-group" align="center">
+                        <a href="#" class="btnForgetPwd">Wachtwoord vergeten?</a>
+                    </div>                
+                </form>
+            </div>
+            <div class="col-md-6 login-form-2">
+                <h3>Registreren</h3>
+                <form method="post">
+                    <div class="form-group">
+                        <input name="naam" type="text" class="form-control" placeholder="Naam*" value="@Request.Form["naam"]" />
+                    </div>
+                    <div class="form-group">
+                        <input name="gebruikersnaam" type="text" class="form-control" placeholder="Gebruikersnaam*" value="@Request.Form["gebruikersnaam"]" />
+                    </div>
+                    <div class="form-group">
+                        <input name="mailadres" type="text" class="form-control" placeholder="E-mailadres*" value="@Request.Form["mailadres"]" />
+                    </div>
+                    <div class="form-group">
+                        <input name="wachtwoord" type="password" class="form-control" placeholder="Wachtwoord*" value="@Request.Form["wachtwoord"]" />
+                    </div>
+                    <div class="form-group" align="center">
+                        <input name="regist" type="submit" class="btnSubmit" value="Registreren" />
+                    </div>                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

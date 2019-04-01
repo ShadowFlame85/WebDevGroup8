@@ -2,3 +2,5 @@
 *.sqlite
 WebdevGroup8/App_Data/StarterSite.sdf
 Website/.vs/Website/v15/.suo
+Website/Website/App_Data/Bezoekers.mdf
+Website/Website/App_Data/Bezoekers_log.ldf
