@@ -8,11 +8,11 @@
 }
 body {
     font-family: "montserrat", sans-serif;
-    background: #354737;
+    
 
 }
-main{
-    
+main {
+    background: #354737;
 }
 .break{
     height: 80px;
