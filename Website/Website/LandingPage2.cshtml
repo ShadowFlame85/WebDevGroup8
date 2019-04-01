@@ -1,6 +1,50 @@
-﻿@{
+﻿@using WebMatrix.Data
+@{
     Layout = "/Layout/_LandingPage.cshtml";
-}
+    Validation.RequireField("naam", "U heeft nog geen naam ingevuld");
+    Validation.RequireField("gebruikersnaam", "U heeft nog geen gebruikersnaam ingevuld");
+    Validation.RequireField("mailadres", "U heeft nog geen e-mailadres ingevuld");
+    Validation.RequireField("wachtwoord", "U heeft nog geen wachtwoord ingevuld");
+
+    var naam = "";
+    var gebruikersnaam = "";
+    var mailadres = "";
+    var wachtwoord = "";
+
+    if (IsPost && Validation.IsValid())
+    {
+        naam = Request.Form["naam"];
+        gebruikersnaam = Request.Form["gebruikersnaam"];
+        mailadres = Request.Form["mailadres"];
+        wachtwoord = Request.Form["wachtwoord"];
+
+        string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\......mdf;Integrated Security=True";
+        string provider = "System.Data.SqlClient";
+        Database db = Database.OpenConnectionString(connectionString, provider);
+        var insertCommand = "INSERT INTO Movies (Naam, Gebruikersnaam, Mailadres) Values(@0, @1, @2, @3)";
+        db.Execute(insertCommand, naam, gebruikersnaam, mailadres, wachtwoord);
+        Response.Redirect("~/Movies");
+    }
+    if (Request.Form["inlog"] != null)
+    {
+        mailadres = Request.Form["mailadres"];
+        wachtwoord = Request.Form["wachtwoord"];
+        string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\GEHEELNAAM.mdf;Integrated Security=True";
+        string provider = "System.Data.SqlClient";
+        Database db = Database.OpenConnectionString(connectionString, provider);
+        //Hieronder geef je aan dat apestaartje 0 mailadres is
+        var query = db.QuerySingle("SELECT Wachtwoord, TABELNAAM FROM GEHEELNAAM WHERE Mailadres=@0", mailadres);
+        if (query.Wachtwoord == wachtwoord)
+        {
+            Session["ID"] = query.TABELNAAM;
+            Response.Redirect("~/LandingPage2.cshtml");
+        }
+        else
+        {
+
+        }
+        db.Close();
+    }
 
     <div id="home">
 
