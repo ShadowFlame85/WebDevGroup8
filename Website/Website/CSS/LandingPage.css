@@ -107,7 +107,7 @@ main {
     color: white;
     font-size: 22px;
 }
-.s-m{
+/*.s-m{
     position:absolute;
     top: 50%;
     left: 50%;
@@ -133,4 +133,4 @@ main {
 }
 .s-m a:hover > i{
     transform: scale(1.6) rotate(25deg);
-}
+}*/
