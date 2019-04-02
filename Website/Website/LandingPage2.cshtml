@@ -18,7 +18,7 @@
         mailadres = Request.Form["mailadres"];
         wachtwoord = Request.Form["wachtwoord"];
 
-        string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\......mdf;Integrated Security=True";
+        string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Bezoekers.mdf;Integrated Security=True";
         string provider = "System.Data.SqlClient";
         Database db = Database.OpenConnectionString(connectionString, provider);
         var insertCommand = "INSERT INTO Movies (Naam, Gebruikersnaam, Mailadres) Values(@0, @1, @2, @3)";
