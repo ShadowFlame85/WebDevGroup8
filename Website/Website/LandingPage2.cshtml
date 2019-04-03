@@ -11,7 +11,8 @@
     var mailadres = "";
     var wachtwoord = "";
 
-    if (IsPost && Validation.IsValid())
+    //Registreren
+    if (Request.Form["regist"] != null && Validation.IsValid())
     {
         naam = Request.Form["naam"];
         gebruikersnaam = Request.Form["gebruikersnaam"];
@@ -21,11 +22,12 @@
         string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Bezoekers.mdf;Integrated Security=True";
         string provider = "System.Data.SqlClient";
         Database db = Database.OpenConnectionString(connectionString, provider);
-        var insertCommand = "INSERT INTO  (Naam, Gebruikersnaam, Mailadres) Values(@0, @1, @2, @3)";
+        var insertCommand = "INSERT INTO Registratie (Naam, Gebruikersnaam, Mailadres, Wachtwoord) Values(@0, @1, @2, @3)";
         db.Execute(insertCommand, naam, gebruikersnaam, mailadres, wachtwoord);
-        Response.Redirect("~/Bezoekers");
+        Response.Redirect("~/");
     }
-    if (Request.Form["inlog"] != null)
+    //Inloggen
+    if (Request.Form["inlog"] != null && Validation.IsValid())
     {
         mailadres = Request.Form["mailadres"];
         wachtwoord = Request.Form["wachtwoord"];
@@ -33,11 +35,11 @@
         string provider = "System.Data.SqlClient";
         Database db = Database.OpenConnectionString(connectionString, provider);
         //Hieronder geef je aan dat apestaartje 0 mailadres is
-        var query = db.QuerySingle("SELECT Wachtwoord, TABELNAAM FROM GEHEELNAAM WHERE Mailadres=@0", mailadres);
+        var query = db.QuerySingle("SELECT Wachtwoord Registratie FROM Bezoekers WHERE Mailadres=@0", mailadres);
         if (query.Wachtwoord == wachtwoord)
         {
-            Session["ID"] = query.TABELNAAM;
-            Response.Redirect("~/LandingPage2.cshtml");
+            Session["ID"] = query.Registratie;
+            
         }
         else
         {
@@ -46,18 +48,94 @@
         db.Close();
     }
 }
-
+<div id="background">
 <div id="home">
-
     <div class="landing-page">
-
         <div class="page-content">
-            <h1>Full Landing Page</h1>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-            <a href="#maps">Get Started</a>
+            <h1>Amerika</h1>
+            <p>
+                Reis je door Amerika dan voelt het of ben je in een film.<br />
+                De wegen, de steden, de huizen. Alles is zo herkenbaar van de televisie...
+            </p>
+            <a href="#text">Net als in de film...</a>
         </div>
     </div>
-
+</div>
+<div class="break"></div>
+<div id="text" class="container">
+    <div id="empty"></div>
+    <div class="content">
+    <h1>Net als in de film...</h1>
+    <p>
+        Reis je door Amerika dan voelt het of ben je in een film.
+        De wegen, de steden, de huizen. Alles is zo herkenbaar van de televisie.
+        Heb je wel eens een western op TV gezien, dan verwacht je zo dat Clint Eastwood op zijn paard komt rijden.
+        Amerika is groot en wijds. 
+        Rij je van oost naar west of andersom dan verandert het uitzicht regelmatig. 
+        En dan het spoor. 
+        Dat is zo ontzettend lang en dan die treinen, je staat zo 5 tot 10 minuten te wachten voor een overweg voordat de trein voorbij is.<br />
+        <br />
+        Alles is groot (big) de auto’s, in de steden de gebouwen, supermarkten van winkel, verpakkingen tot de winkelwagen.
+        Daarnaast zie je ook dat mensen in kleine woningen leven. Voor ons zo groot als een stacaravan.
+        In de middle of no where zijn er geen voorzieningen maar er staan dan wel een paar kleine huisjes/stacaravans waar veel oud ijzer/auto’s omheen ligt. 
+        Wij noemen dat rotzooi wat we naar de afvalverwerking brengen. 
+        Vaak zie je in afgelegen gebieden heel veel brievenbussen op een rij en de huizen zijn dan ergens verspreid in het gebied. 
+        Soms zie je helemaal geen huizen staan, alleen brievenbussen.<br />
+        <br />
+        De mensen zijn aardig vaak heel erg aardig. 
+        M.n. in restaurants. 
+        Maar zodra je hebt afgerekend, dan ben je soms niet meer die klant die daarvoor nog zo in de watten werd gelegd. 
+        Dat is overigens niet in alle restaurants het geval. 
+        Vaak vragen ze waar je weg komt. 
+        En als ze weten dat je uit Nederland komt, dan is het helemaal oké. 
+        Heeft de serveerster bekenden in Nederland dan kan het voorkomen dat je ze gaan omhelzen. <br />
+        <br />
+        Het eten in de restaurants is goed, veel en vaak wel wat te vet.
+        Een goed restaurant is Denny’s. 
+        24 uur per dag open. 
+        Voor ontbijt aten wij altijd het vegetarische menu met eieren, groentes en toast. 
+        Genoeg om de hele dag op te leven. 
+        Maar je ziet ook klanten die rustig pancakes en een steak met friet opeten, ’s morgens om 8.00 uur.<br />
+        <br />
+        Je kan ook goed Mexicaans eten. 
+        Deze restaurants zijn verspreid door het hele land en worden gerund door Mexicanen zodat je ook de echte Mexicaanse keuken kan proeven.
+        Bestel niet te veel want vooraf krijg je standaard een bak (gratis) chips met salsa en ze vullen dat met alle liefde voor je aan als je niet genoeg hebt.<br />
+        <br />
+        <b>Overnachtingen en ontbijten</b><br />
+        Je kunt prima overnachten in Amerika. De keuze is reuze.
+        Je hebt motels die worden beheerd door één of meerdere personen en er zijn motel/hotel ketens bv. M6, Super 8, Best Western. 
+        Soms met continental breakfast. Dat stelt niet veel, vaak wat toast en/of muffins, koffie en thee bij de receptie, sober ingerichte ruimte met beperkte zit ruimte. 
+        Je kan het ook meenemen naar je kamer.
+        Wij haalden vaak in de supermarkt een doos met cornflakes o.i.d. 
+        ’s Avonds nog even een kleine can met melk (de rode) kopen bij de plaatselijke benzinepomp of supermarkt en dan de volgende ochtend in de kamer in een (meegebrachte bakjes en lepels) even opeten. 
+        Gaat ook prima. 
+        Maar je kunt ook prima ontbijten in de restaurants in de buurt van het motel of onderweg. 
+        Vaak is er wel een restaurant open. 
+        Zelfs in een dorp zo groot als Wirdum/Bitgum/Ried is wel een motel met restaurant. 
+        En anders rijd je eerst een stuk en vind je onderweg wel iets leuks. 
+        Soms ook nog wel in de jaren 60 stijl.
+        De prijzen van motels lopen erg uiteen. 
+        Dus even “shoppen” in de plaats is raadzaam. 
+        Daarbij wel de kamer even bekijken. 
+        Een dure kamer is niet altijd de beste en een goedkope kamer kan soms heel erg meevallen. 
+        Vooruit boeken is vaak niet nodig tenzij je met meer dan 2 personen bent. 
+        En vooruit boeken kan goedkoper zijn m.n. bij ketens. 
+        Ben je 60 jaar of ouder dan heb je soms senior sitizens korting.<br />
+        <br />
+        <b>Amerika kent heel veel nationale parken en State parken</b><br />
+        Dit zijn gebieden die speciale bescherming krijgen vanwege de prachtige natuur en men wil dit in oorspronkelijke staat behouden. 
+        Daarbij wil men wel dat iedereen deze parken kan bezoeken. 
+        In deze parken zijn parkwachters aanwezig die informatie geven en rondleidingen. 
+        Yellowstone Park (niet op deze website) was de eerste nationale park.
+        Er zijn parken die heten National monument deze parken zijn van Historisch belang. 
+        State parken worden beheert door de Staat zelf. 
+        Zo heeft elke staat zijn eigen State Park Organisatie.
+        <br />
+        De entree betaal je vaak per auto. Maar voor de nationale parken is ook een pas verkrijgbaar waarbij je een éénmalig bedrag betaalt voor alle nationale parken en is 1 jaar geldig. 
+        Deze pas heet America the Beautiful Pass en kost 80 dollar (2018).
+        Bij de ingang van het park is een hokje met een medewerker die je van informatiemateriaal en een overzichtelijk kaartje van het park met bezienswaardigheden verzorgt.
+    </p>
+        </div>
 </div>
 
 @*<div class="container">
@@ -266,5 +344,6 @@
         </div>
     </div>
 </div>
+    </div>
 <a class="gotupbtn" href="#"><i class="fas fa-chevron-up"></i></a>
 

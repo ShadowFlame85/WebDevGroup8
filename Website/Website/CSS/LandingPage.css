@@ -1,38 +1,29 @@
-﻿#empty{
-    height:8vh;
-    width: 100%;
-}
-#map {
-    height: 92vh;
-    width: 100%;
-}
-
-html, body {
+﻿html {
+    scroll-behavior: smooth;
     height: 100%;
     margin: 0;
     padding: 0;
 }
-
-html {
-    scroll-behavior: smooth;
-}
-*{
+* {
     margin: 0;
     padding: 0;
     text-decoration: none;
 }
 body {
     font-family: "montserrat", sans-serif;
-    
-
-}
-main {
     background: #354737;
 }
-.break{
-    height: 80px;
+#background {
+    background: #354737;
 }
-
+#empty {
+    height: 8vh;
+    width: 100%; 
+}
+.break {
+    height: 80px;
+    
+}
 .landing-page {
     width: 100%;
     height: 100vh;
@@ -40,18 +31,19 @@ main {
     position: relative;
     overflow: hidden;
 }
-    .landing-page:after {
+.landing-page:after {
         content: "";
         position: absolute;
         left: 0;
         top: 0;
         width: 100%;
         height: 100%;
-        background: url(https://reisgenie.nl/wp-content/uploads/2018/09/Amerika-1-2.jpg) no-repeat;
+        background: url(https://northeurope1-mediap.svc.ms/transform/thumbnail?provider=spo&inputFormat=jpg&cs=fFNQTw&docid=https://newuniversity-my.sharepoint.com:443/_api/v2.0/drives/b!u2zrdX41oEqlM8_qatjQm9KvFhiedZpCtIKYIwkojIwNP36tE4dNTKLwasa8dnGP/items/012JH6KHYF4QUDLPFAZNBYUIXCXJF22TBJ%3Fversion%3DPublished&encodeFailures=1&ctag=%22c:{3528E405-A0BC-43CB-8A22-E2BA4BAD4C29},3%22&width=1366&height=585&srcWidth=&srcHeight=) no-repeat;
         background-size: cover;
-        opacity: 0.3;
+        opacity: 0.2;
         animation: anim 25s linear infinite;
     }
+
 @keyframes anim {
     50% {
         transform: scale(2);
@@ -109,6 +101,11 @@ main {
     text-align: center;
 }
 
+#map {
+    height: 92vh;
+    width: 100%;
+}
+
 .gotupbtn {
     position: fixed;
     width: 50px;
@@ -122,30 +119,3 @@ main {
     color: white;
     font-size: 22px;
 }
-/*.s-m{
-    position:absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-.s-m a{
-    display:inline-flex;
-    width: 40px;
-    height: 40px;
-    background: #2c3e50;
-    color: white;
-    margin: 0 6px;
-    border-radius: 50%;
-    justify-content: center;
-    transition: 0.4s;
-    font-size: 22px;
-}
-.s-m a:hover{
-    background: hotpink;
-}
-.s-m a i{
-    transition: 0.4s all;
-}
-.s-m a:hover > i{
-    transform: scale(1.6) rotate(25deg);
-}*/
