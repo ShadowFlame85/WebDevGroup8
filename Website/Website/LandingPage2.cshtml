@@ -21,9 +21,9 @@
         string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Bezoekers.mdf;Integrated Security=True";
         string provider = "System.Data.SqlClient";
         Database db = Database.OpenConnectionString(connectionString, provider);
-        var insertCommand = "INSERT INTO Movies (Naam, Gebruikersnaam, Mailadres) Values(@0, @1, @2, @3)";
+        var insertCommand = "INSERT INTO  (Naam, Gebruikersnaam, Mailadres) Values(@0, @1, @2, @3)";
         db.Execute(insertCommand, naam, gebruikersnaam, mailadres, wachtwoord);
-        Response.Redirect("~/Movies");
+        Response.Redirect("~/Bezoekers");
     }
     if (Request.Form["inlog"] != null)
     {
