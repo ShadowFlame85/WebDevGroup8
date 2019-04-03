@@ -50,40 +50,7 @@
 <div id="home">
 
     <div class="landing-page">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <a class="navbar-brand" href="#">Full Landing Page</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#home">Home</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#maps">Maps</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#list">List</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#gallery">Gallery</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#loginregist">Login/Regist</a>
-                    </li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-            </div>
-        </nav>
         <div class="page-content">
             <h1>Full Landing Page</h1>
             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
@@ -105,52 +72,54 @@
             </div>
         </div>
     </div>*@
+<div class="break"></div>
+<div id="maps">
+    <div id="empty"></div>
+    <div id="map"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?AIzaSyCHDtWgo6qUgMWnK5sUwf2qFXOUHKI4gqc"></script>
+    <script type="text/javascript">
 
-<br />
-<div id="map"></div>
-<script src="https://maps.googleapis.com/maps/api/js?AIzaSyCHDtWgo6qUgMWnK5sUwf2qFXOUHKI4gqc"></script>
-<script type="text/javascript">
+        var locations = [
+            ['Antelope Canyon', 36.861910, -111.374330, 10],
+            ['National Park Grand Canyon', 36.115161, -112.115688, 9],
+            ['Hollywood', 34.092889, -118.325963, 8],
+            ['Los Angeles', 34.052235, -118.243683, 7],
+            ['San Francisco', 37.733795, -122.446747, 6],
+            ['Organ Pipe Cactus National Monument', 32.038374, -112.939584],
+            ['Calico Ghost Town', 34.943572, -116.865911, 4],
+            ['Joshua Tree', 33.7883944, -115.8982222, 3],
+            ['Sequoia National Park', 36.486366, -118.565750, 2],
+            ['Yosemite National Park', 37.865101, -119.538330, 1]
+        ];
 
-    var locations = [
-        ['Antelope Canyon', 36.861910, -111.374330, 10],
-        ['National Park Grand Canyon', 36.115161, -112.115688, 9],
-        ['Hollywood', 34.092889, -118.325963, 8],
-        ['Los Angeles', 34.052235, -118.243683, 7],
-        ['San Francisco', 37.733795, -122.446747, 6],
-        ['Organ Pipe Cactus National Monument', 32.087687, 112.905848, 5],
-        ['Calico Ghost Town', 34.943572, -116.865911, 4],
-        ['Joshua Tree', 33.7883944, -115.8982222, 3],
-        ['Sequoia National Park', 36.486366, -118.565750, 2],
-        ['Yosemite National Park', 37.865101, -119.538330, 1]
-    ];
-
-    var map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: 34.008778, lng: -118.206061 },
-        zoom: 5.5
-    });
-
-    var infowindow = new google.maps.InfoWindow();
-
-    var marker, i;
-
-    for (i = 0; i < locations.length; i++) {
-        marker = new google.maps.Marker({
-            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-            map: map
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 34.008778, lng: -118.206061 },
+            zoom: 5.5
         });
 
-        google.maps.event.addListener(marker, 'click', (function (marker, i) {
-            return function () {
-                infowindow.setContent(locations[i][0]);
-                infowindow.open(map, marker);
-            }
-        })(marker, i));
-    }
+        var infowindow = new google.maps.InfoWindow();
 
-</script>
+        var marker, i;
 
+        for (i = 0; i < locations.length; i++) {
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                map: map
+            });
+
+            google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                return function () {
+                    infowindow.setContent(locations[i][0]);
+                    infowindow.open(map, marker);
+                }
+            })(marker, i));
+        }
+
+    </script>
+</div>
+<div class="break"></div>
 <div id="list">
-    <div class="break"></div>
+    <div id="empty"></div>
     <div class="content">
         <div class="row">
             <div class="col-lg-4 col-sm-6 mb-4">
@@ -247,14 +216,15 @@
         </ul>
     </div>
 </div>
-
+<div class="break"></div>
 <div id="gallery">
+<div id="empty"></div>
 
 </div>
-
+<div class="break"></div>
 <div id="loginregist">
-    <div class="break"></div>
-    <div class="content">
+    <div id="empty"></div>
+    <div class="content container">
         <div class="row">
             <div class="col-md-6 login-form-1">
                 <h3>Inloggen</h3>

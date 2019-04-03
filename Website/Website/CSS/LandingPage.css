@@ -1,9 +1,12 @@
-﻿/* Always set the map height explicitly to define the size of the div
-            * element that contains the map. */
-#map {
-    height: 425px;
+﻿#empty{
+    height:8vh;
+    width: 100%;
 }
-/* Optional: Makes the sample page fill the window. */
+#map {
+    height: 92vh;
+    width: 100%;
+}
+
 html, body {
     height: 100%;
     margin: 0;
