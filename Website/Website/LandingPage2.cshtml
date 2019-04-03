@@ -47,211 +47,254 @@
     }
 }
 
-    <div id="home">
+<div id="home">
 
-        <div class="landing-page">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-                <a class="navbar-brand" href="#">Full Landing Page</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    <div class="landing-page">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand" href="#">Full Landing Page</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#home">Home</a>
-                        </li>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="#maps">Maps</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#maps">Maps</a>
+                    </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="#list">List</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#list">List</a>
+                    </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="#gallery">Gallery</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Gallery</a>
+                    </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="#loginregist">Login/Regist</a>
-                        </li>
-                    </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                </div>
-            </nav>
-            <div class="page-content">
-                <h1>Full Landing Page</h1>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                <a href="#maps">Get Started</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#loginregist">Login/Regist</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
             </div>
+        </nav>
+        <div class="page-content">
+            <h1>Full Landing Page</h1>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+            <a href="#maps">Get Started</a>
         </div>
-        
     </div>
-    
-        <div class="container">
-            <div id="maps">
-                <div class="break"></div>
-                <div class="content">
-                    <h3>My Google Maps</h3>
-                    <div class="Google_Maps">
-                        <div class="gmap_canvas"><iframe width="600" height="450" frameborder="0" style="border:0"
-        src="https://www.google.com/maps/embed/v1/view?zoom=5&center=36.7783,-119.4179&key=..." allowfullscreen></iframe></div>
+
+</div>
+
+@*<div class="container">
+        <div id="maps">
+            <div class="break"></div>
+            <div class="content">
+                <h3>My Google Maps</h3>
+                <div class="Google_Maps">
+                    <div class="gmap_canvas"><iframe width="600" height="450" frameborder="0" style="border:0"
+    src="https://www.google.com/maps/embed/v1/view?zoom=5&center=36.7783,-119.4179&key=..." allowfullscreen></iframe></div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+<br />
+<div id="map"></div>
+<script src="https://maps.googleapis.com/maps/api/js?AIzaSyCHDtWgo6qUgMWnK5sUwf2qFXOUHKI4gqc"></script>
+<script type="text/javascript">
+
+    var locations = [
+        ['Antelope Canyon', 36.861910, -111.374330, 10],
+        ['National Park Grand Canyon', 36.115161, -112.115688, 9],
+        ['Hollywood', 34.092889, -118.325963, 8],
+        ['Los Angeles', 34.052235, -118.243683, 7],
+        ['San Francisco', 37.733795, -122.446747, 6],
+        ['Organ Pipe Cactus National Monument', 32.087687, 112.905848, 5],
+        ['Calico Ghost Town', 34.943572, -116.865911, 4],
+        ['Joshua Tree', 33.7883944, -115.8982222, 3],
+        ['Sequoia National Park', 36.486366, -118.565750, 2],
+        ['Yosemite National Park', 37.865101, -119.538330, 1]
+    ];
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: 34.008778, lng: -118.206061 },
+        zoom: 5.5
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            map: map
+        });
+
+        google.maps.event.addListener(marker, 'click', (function (marker, i) {
+            return function () {
+                infowindow.setContent(locations[i][0]);
+                infowindow.open(map, marker);
+            }
+        })(marker, i));
+    }
+
+</script>
+
+<div id="list">
+    <div class="break"></div>
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="card h-100">
+                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#">Project One</a>
+                        </h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="card h-100">
+                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#">Project Two</a>
+                        </h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="card h-100">
+                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#">Project Three</a>
+                        </h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="card h-100">
+                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#">Project Four</a>
+                        </h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="card h-100">
+                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#">Project Five</a>
+                        </h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="card h-100">
+                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#">Project Six</a>
+                        </h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- /.row -->
+        <!-- Pagination -->
+        <ul class="pagination justify-content-center">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#list">1</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#list">2</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#list">3</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
 
-            <div id="list">
-                <div class="break"></div>
-                <div class="content">
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-6 mb-4">
-                            <div class="card h-100">
-                                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <a href="#">Project One</a>
-                                    </h4>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6 mb-4">
-                            <div class="card h-100">
-                                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <a href="#">Project Two</a>
-                                    </h4>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6 mb-4">
-                            <div class="card h-100">
-                                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <a href="#">Project Three</a>
-                                    </h4>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6 mb-4">
-                            <div class="card h-100">
-                                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <a href="#">Project Four</a>
-                                    </h4>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6 mb-4">
-                            <div class="card h-100">
-                                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <a href="#">Project Five</a>
-                                    </h4>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6 mb-4">
-                            <div class="card h-100">
-                                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <a href="#">Project Six</a>
-                                    </h4>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
-                                </div>
-                            </div>
-                        </div>
+<div id="gallery">
+
+</div>
+
+<div id="loginregist">
+    <div class="break"></div>
+    <div class="content">
+        <div class="row">
+            <div class="col-md-6 login-form-1">
+                <h3>Inloggen</h3>
+                <form method="post">
+                    <div class="form-group">
+                        <input name="mailadres" type="text" class="form-control" placeholder="E-mailadres*" value="@Request.QueryString["mailadres"]" />
                     </div>
-                    <!-- /.row -->
-                    <!-- Pagination -->
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#list">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#list">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#list">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div id="gallery">
-
-            </div>
-
-            <div id="loginregist">
-                <div class="break"></div>
-                <div class="content">
-                    <div class="row">
-                        <div class="col-md-6 login-form-1">
-                            <h3>Inloggen</h3>
-                            <form method="post">
-                                <div class="form-group">
-                                    <input name="mailadres" type="text" class="form-control" placeholder="E-mailadres*" value="@Request.QueryString["mailadres"]" />
-                                </div>
-                                <div class="form-group">
-                                    <input name="wachtwoord" type="password" class="form-control" placeholder="Wachtwoord*" value="@Request.QueryString["wachtwoord"]" />
-                                </div>
-                                <div class="form-group" align="center">
-                                    <input type="submit" class="btnSubmit" value="Inloggen" name="inlog" />
-                                </div>
-                                <div class="form-group" align="center">
-                                    <a href="#" class="btnForgetPwd">Wachtwoord vergeten?</a>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-md-6 login-form-2">
-                            <h3>Registreren</h3>
-                            <form method="post">
-                                <div class="form-group">
-                                    <input name="naam" type="text" class="form-control" placeholder="Naam*" value="@Request.Form["naam"]" />
-                                </div>
-                                <div class="form-group">
-                                    <input name="gebruikersnaam" type="text" class="form-control" placeholder="Gebruikersnaam*" value="@Request.Form["gebruikersnaam"]" />
-                                </div>
-                                <div class="form-group">
-                                    <input name="mailadres" type="text" class="form-control" placeholder="E-mailadres*" value="@Request.Form["mailadres"]" />
-                                </div>
-                                <div class="form-group">
-                                    <input name="wachtwoord" type="password" class="form-control" placeholder="Wachtwoord*" value="@Request.Form["wachtwoord"]" />
-                                </div>
-                                <div class="form-group" align="center">
-                                    <input name="regist" type="submit" class="btnSubmit" value="Registreren" />
-                                </div>
-                            </form>
-                        </div>
+                    <div class="form-group">
+                        <input name="wachtwoord" type="password" class="form-control" placeholder="Wachtwoord*" value="@Request.QueryString["wachtwoord"]" />
                     </div>
-                </div>
+                    <div class="form-group" align="center">
+                        <input type="submit" class="btnSubmit" value="Inloggen" name="inlog" />
+                    </div>
+                    <div class="form-group" align="center">
+                        <a href="#" class="btnForgetPwd">Wachtwoord vergeten?</a>
+                    </div>
+                </form>
             </div>
-            <a class="gotupbtn" href="#"><i class="fas fa-chevron-up"></i></a>
+            <div class="col-md-6 login-form-2">
+                <h3>Registreren</h3>
+                <form method="post">
+                    <div class="form-group">
+                        <input name="naam" type="text" class="form-control" placeholder="Naam*" value="@Request.Form["naam"]" />
+                    </div>
+                    <div class="form-group">
+                        <input name="gebruikersnaam" type="text" class="form-control" placeholder="Gebruikersnaam*" value="@Request.Form["gebruikersnaam"]" />
+                    </div>
+                    <div class="form-group">
+                        <input name="mailadres" type="text" class="form-control" placeholder="E-mailadres*" value="@Request.Form["mailadres"]" />
+                    </div>
+                    <div class="form-group">
+                        <input name="wachtwoord" type="password" class="form-control" placeholder="Wachtwoord*" value="@Request.Form["wachtwoord"]" />
+                    </div>
+                    <div class="form-group" align="center">
+                        <input name="regist" type="submit" class="btnSubmit" value="Registreren" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<a class="gotupbtn" href="#"><i class="fas fa-chevron-up"></i></a>
 
