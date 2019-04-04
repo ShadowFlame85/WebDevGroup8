@@ -39,7 +39,7 @@
         if (query.Wachtwoord == wachtwoord)
         {
             Session["ID"] = query.Registratie;
-            
+
         }
         else
         {
@@ -299,6 +299,8 @@
 
 </div>
 <div class="break"></div>
+    @if (Session["ID"] == null)
+    {
 <div id="loginregist">
     <div class="container login-container">
         <div class="row">
@@ -342,5 +344,6 @@
         </div>
     </div>
 </div>
+    }
     </div>
 <a class="gotupbtn" href="#"><i class="fas fa-chevron-up"></i></a>
