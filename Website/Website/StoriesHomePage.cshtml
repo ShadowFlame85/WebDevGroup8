@@ -1,3 +1,16 @@
 ﻿@{
     Layout = "/Layout/_LayoutStoriesHomePage.cshtml";
 }
+@{ 
+    string searchstring = Request.Form["search"];
+    int i = 0;
+    if (searchstring == null)
+    {
+        //count stories and build completely
+    }
+    else
+    {
+        //sql CONTAINS query, then count and build accordingly
+    }
+
+}
