@@ -9,7 +9,7 @@
     string provider = "System.Data.SqlClient";
     Database db = Database.OpenConnectionString(connectionString, provider);
 
-
+    Page.Title = "Westcoast USA";
     Layout = "/Layout/_LandingPage.cshtml";
 
     Validation.RequireField("naam", "U heeft nog geen naam ingevuld");
@@ -475,4 +475,5 @@
 </div>
     }
     </div>
+<div class="break"></div>
 <a class="gotupbtn" href="#"><i class="fas fa-chevron-up"></i></a>
