@@ -6,16 +6,42 @@
     string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Bezoekers.mdf;Integrated Security=True";
     string provider = "System.Data.SqlClient";
     Database db = Database.OpenConnectionString(connectionString, provider);
+    string searchstring = null;
+    searchstring = Request.Form["search"];
+    
 
-    string searchstring = Request.Form["search"];
-    int i = 0;
-    if (searchstring == null)
+    if (searchstring == null || searchstring == "")
     {
         //count stories and build completely
+        var query = db.Query("SELECT Titel, ImageURL  FROM [Stories] JOIN Images ON [Stories].Id = Images.Story_Id");
+
+        foreach (var row in query)
+        {
+<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+    <div class="hovereffect">
+        <img class="img-responsive" src="http://placehold.it/350x250" alt="">
+        <div class="overlay">
+            <h2>row.Titel</h2>
+            <p>
+                <a href="@row.ImageURL ">LINK HERE</a>
+            </p>
+        </div>
+    </div>
+</div>
+            <p>@row.ImageURL - @row.Titel</p>
+        }
+        
     }
     else
     {
+        var query = db.Query("SELECT Titel, ImageURL  FROM [Stories] JOIN Images ON [Stories].Id = Images.Story_Id WHERE Titel Like '%@0%'", searchstring);
         //sql CONTAINS query, then count and build accordingly
+        foreach (var row in query)
+        {
+            // HTML code
+            <p>@row.ImageURL - @row.Titel</p>
+        }
+        
     }
 
 }
