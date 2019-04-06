@@ -20,6 +20,7 @@ body {
     height: 8vh;
     width: 100%; 
 }
+
 .break {
     height: 80px;
     
@@ -31,14 +32,15 @@ body {
     position: relative;
     overflow: hidden;
 }
-.landing-page:after {
+    .landing-page:after {
         content: "";
         position: absolute;
         left: 0;
         top: 0;
         width: 100%;
         height: 100%;
-        background: url(https://northeurope1-mediap.svc.ms/transform/thumbnail?provider=spo&inputFormat=jpg&cs=fFNQTw&docid=https://newuniversity-my.sharepoint.com:443/_api/v2.0/drives/b!u2zrdX41oEqlM8_qatjQm9KvFhiedZpCtIKYIwkojIwNP36tE4dNTKLwasa8dnGP/items/012JH6KHYF4QUDLPFAZNBYUIXCXJF22TBJ%3Fversion%3DPublished&encodeFailures=1&ctag=%22c:{3528E405-A0BC-43CB-8A22-E2BA4BAD4C29},3%22&width=1366&height=585&srcWidth=&srcHeight=) no-repeat;
+        background-image: url("https://www.sprout.nl/sites/default/files/styles/large/public/field/image/new-york-skyline-amerika-internationaal-handel-pixabay.jpg?itok=UqW4_uIE");
+        background-repeat: no-repeat;
         background-size: cover;
         opacity: 0.2;
         animation: anim 25s linear infinite;
@@ -105,6 +107,99 @@ body {
     height: 92vh;
     width: 100%;
 }
+/*List*/
+
+.listtitle h2 {
+    color: #b35417;
+    text-transform: uppercase;
+    font-size: 50px;
+    font-weight: 900;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.hovereffect {
+    float: left;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    cursor: default;
+    height: 38vh;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+    .hovereffect .overlay {
+        position: absolute;
+        overflow: hidden;
+        width: 80%;
+        height: 80%;
+        left: 10%;
+        top: 10%;
+        border-bottom: 1px solid #FFF;
+        border-top: 1px solid #FFF;
+        -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+        transition: opacity 0.35s, transform 0.35s;
+        -webkit-transform: scale(0,1);
+        -ms-transform: scale(0,1);
+        transform: scale(0,1);
+    }
+
+    .hovereffect:hover .overlay {
+        opacity: 1;
+        filter: alpha(opacity=100);
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+
+    .hovereffect img {
+        display: block;
+        height: 100%;
+        position: relative;
+        -webkit-transition: all 0.35s;
+        transition: all 0.35s;
+    }
+
+    .hovereffect:hover img {
+        filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="linear" slope="0.6" /><feFuncG type="linear" slope="0.6" /><feFuncB type="linear" slope="0.6" /></feComponentTransfer></filter></svg>#filter');
+        filter: brightness(0.6);
+        -webkit-filter: brightness(0.6);
+    }
+
+    .hovereffect h2 {
+        text-transform: uppercase;
+        text-align: center;
+        position: relative;
+        font-size: 17px;
+        background-color: transparent;
+        color: #FFF;
+        padding: 1em 0;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+        transition: opacity 0.35s, transform 0.35s;
+        -webkit-transform: translate3d(0,-100%,0);
+        transform: translate3d(0,-100%,0);
+    }
+
+    .hovereffect a, .hovereffect p {
+        color: #FFF;
+        padding: 1em 0;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+        transition: opacity 0.35s, transform 0.35s;
+        -webkit-transform: translate3d(0,100%,0);
+        transform: translate3d(0,100%,0);
+    }
+
+    .hovereffect:hover a, .hovereffect:hover p, .hovereffect:hover h2 {
+        opacity: 1;
+        filter: alpha(opacity=100);
+        -webkit-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+    }
 
 .gotupbtn {
     position: fixed;

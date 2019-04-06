@@ -11,6 +11,7 @@
 
 
     Layout = "/Layout/_LandingPage.cshtml";
+
     Validation.RequireField("naam", "U heeft nog geen naam ingevuld");
     Validation.RequireField("gebruikersnaam", "U heeft nog geen gebruikersnaam ingevuld");
     Validation.RequireField("mailadres", "U heeft nog geen e-mailadres ingevuld");
@@ -86,7 +87,7 @@
 <div id="home">
     <div class="landing-page">
         <div class="page-content">
-            <h1>Amerika</h1>
+            <h1>Westcoast USA</h1>
             <p>
                 Reis je door Amerika dan voelt het of ben je in een film.<br />
                 De wegen, de steden, de huizen. Alles is zo herkenbaar van de televisie...
@@ -171,19 +172,6 @@
     </p>
         </div>
 </div>
-
-@*<div class="container">
-        <div id="maps">
-            <div class="break"></div>
-            <div class="content">
-                <h3>My Google Maps</h3>
-                <div class="Google_Maps">
-                    <div class="gmap_canvas"><iframe width="600" height="450" frameborder="0" style="border:0"
-    src="https://www.google.com/maps/embed/v1/view?zoom=5&center=36.7783,-119.4179&key=..." allowfullscreen></iframe></div>
-                </div>
-            </div>
-        </div>
-    </div>*@
 <div class="break"></div>
 <div id="maps">
     <div id="empty"></div>
@@ -230,7 +218,109 @@
     </script>
 </div>
 <div class="break"></div>
-    <div id="list">
+<div id="list" class="container">
+    <div id="empty"></div>
+
+    <div class="listtitle">
+        
+        <h2>Verhalen</h2>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-3">
+            <div class="hovereffect">
+                <img class="img-responsive" src="~/Image/IMG_2143.JPG" alt="">
+                <div class="overlay">
+                    <h2>National Park Grand Canyon - Arizona</h2>
+                    <p>
+                        <a href="#">Lees hier</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="hovereffect">
+                <img class="img-responsive" src="~/Image/DSC_5172.JPG" alt="">
+                <div class="overlay">
+                    <h2>Yosemite National Park - Californië</h2>
+                    <p>
+                        <a href="#">Lees hier</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="hovereffect">
+                <img class="img-responsive" src="~/Image/IMG_1771.JPG" alt="">
+                <div class="overlay">
+                    <h2>Antelope Canyon - Arizona</h2>
+                    <p>
+                        <a href="#">Lees hier</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="hovereffect">
+                <img class="img-responsive" src="~/Image/DSC_6565.JPG" alt="">
+                <div class="overlay">
+                    <h2>Joshua Tree - Californië</h2>
+                    <p>
+                        <a href="#">Lees hier</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="hovereffect">
+                <img class="img-responsive" src="~/Image/IMG_1321.JPG" alt="">
+                <div class="overlay">
+                    <h2>Alcatraz Island - Californië</h2>
+                    <p>
+                        <a href="#">Lees hier</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="hovereffect">
+                <img class="img-responsive" src="~/Image/IMG_1634.JPG" alt="">
+                <div class="overlay">
+                    <h2>Las Vegas - Californië</h2>
+                    <p>
+                        <a href="#">Lees hier</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="hovereffect">
+                <img class="img-responsive" src="~/Image/DSC_5844.JPG" alt="">
+                <div class="overlay">
+                    <h2>Calico Ghost Town - Californië</h2>
+                    <p>
+                        <a href="#">Lees hier</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="hovereffect">
+                <img class="img-responsive" src="~/Image/DSC_5348.JPG" alt="">
+                <div class="overlay">
+                    <h2>Sequoia National Park - Californië</h2>
+                    <p>
+                        <a href="#">Lees hier</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    @*<div id="list">
     <div class="content">
             <div class="row">
                 <div class="col-lg-4 col-sm-6 mb-4">
@@ -326,7 +416,7 @@
                 </li>
             </ul>
         </div>
-</div>
+@*</div>*@
 <div class="break"></div>
 <div id="gallery">
 <div id="empty"></div>
