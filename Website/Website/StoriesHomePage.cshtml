@@ -1,3 +1,21 @@
-﻿@{
+﻿@using WebMatrix.Data
+@{
     Layout = "/Layout/_LayoutStoriesHomePage.cshtml";
+}
+@{
+    string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Bezoekers.mdf;Integrated Security=True";
+    string provider = "System.Data.SqlClient";
+    Database db = Database.OpenConnectionString(connectionString, provider);
+
+    string searchstring = Request.Form["search"];
+    int i = 0;
+    if (searchstring == null)
+    {
+        //count stories and build completely
+    }
+    else
+    {
+        //sql CONTAINS query, then count and build accordingly
+    }
+
 }
