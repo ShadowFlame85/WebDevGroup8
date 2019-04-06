@@ -97,9 +97,10 @@
     </div>
 </div>
 <div class="break"></div>
-<div id="text" class="container">
+<div id="text">
     <div id="empty"></div>
     <div class="content">
+        <div class="container">
     <h1>Net als in de film...</h1>
     <p>
         Reis je door Amerika dan voelt het of ben je in een film.
@@ -170,6 +171,7 @@
         Deze pas heet America the Beautiful Pass en kost 80 dollar (2018).
         Bij de ingang van het park is een hokje met een medewerker die je van informatiemateriaal en een overzichtelijk kaartje van het park met bezienswaardigheden verzorgt.
     </p>
+        </div>
         </div>
 </div>
 <div class="break"></div>
@@ -426,7 +428,10 @@
     @if (Session["ID"] == null)
     {
 <div id="loginregist">
+    
     <div class="container login-container">
+        <div id="empty">
+    </div>
         <div class="row">
             <div class="col-md-6 login-form-1">
                 <h3>Registreren</h3>
@@ -460,7 +465,7 @@
                         <input name="logPass" type="password" class="form-control" placeholder="Wachtwoord" value="@Request.QueryString["wachtwoord"]" />
                     </div>
                     <div class="form-group">
-                        <input name="logButton" type="submit" class="btnSubmit" value="Login" />
+                        <input name="logButton" type="submit" class="btnSubmit" value="Log in" />
                     </div>
 
                 </form>

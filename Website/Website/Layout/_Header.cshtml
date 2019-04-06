@@ -17,7 +17,7 @@
 
                 <li class="nav-item">
                     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-                        <a class="navbar-brand" href="#">Full Landing Page</a>
+                        <a class="navbar-brand" href="#">Westcoast USA</a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -29,20 +29,20 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#maps">Maps</a>
+                                    <a class="nav-link" href="#maps">Map</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#list">Lijst</a>
+                                    <a class="nav-link" href="#list">Verhalen</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#gallery">Gallery</a>
+                                    <a class="nav-link" href="#gallery">Gallerij</a>
                                 </li>
                                 @if (Session["ID"] == null)
                                 {
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#loginregist">Login/Regist</a>
+                                        <a class="nav-link" href="#loginregist">Inloggen/Registeren</a>
                                     </li>
                                 }
                                 else
@@ -53,8 +53,8 @@
                                 }
                             </ul>
                             <form class="form-inline my-2 my-lg-0" method="post" action="~/StoriesHomePage.cshtml">
-                                <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search">
-                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                <input class="form-control mr-sm-2" name="search" type="search" placeholder="Zoeken">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Zoeken</button>
                             </form>
                         </div>
                     </nav>
