@@ -15,16 +15,24 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#list">List</a>
+                <a class="nav-link" href="#list">Lijst</a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="#gallery">Gallery</a>
             </li>
-
+            @if (Session["ID"] == null)
+            {
             <li class="nav-item">
                 <a class="nav-link" href="#loginregist">Login/Regist</a>
             </li>
+            }
+            else
+            {
+            <li class="nav-item">
+                <a class="nav-link" href="~/logOut.cshtml">Uitloggen</a>
+            </li>
+            }
         </ul>
         <form class="form-inline my-2 my-lg-0" method="post" action="~/StoriesHomePage.cshtml">
             <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search">

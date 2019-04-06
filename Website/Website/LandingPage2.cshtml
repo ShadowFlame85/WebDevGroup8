@@ -1,5 +1,15 @@
 ﻿@using WebMatrix.Data
 @{
+
+
+    
+
+
+    string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Bezoekers.mdf;Integrated Security=True";
+    string provider = "System.Data.SqlClient";
+    Database db = Database.OpenConnectionString(connectionString, provider);
+
+
     Layout = "/Layout/_LandingPage.cshtml";
     Validation.RequireField("naam", "U heeft nog geen naam ingevuld");
     Validation.RequireField("gebruikersnaam", "U heeft nog geen gebruikersnaam ingevuld");
@@ -12,41 +22,65 @@
     var wachtwoord = "";
 
     //Registreren
-    if (Request.Form["regist"] != null && Validation.IsValid())
+    if (IsPost)
     {
-        naam = Request.Form["naam"];
-        gebruikersnaam = Request.Form["gebruikersnaam"];
-        mailadres = Request.Form["mailadres"];
-        wachtwoord = Request.Form["wachtwoord"];
-
-        string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Bezoekers.mdf;Integrated Security=True";
-        string provider = "System.Data.SqlClient";
-        Database db = Database.OpenConnectionString(connectionString, provider);
-        var insertCommand = "INSERT INTO Registratie (Naam, Gebruikersnaam, Mailadres, Wachtwoord) Values(@0, @1, @2, @3)";
-        db.Execute(insertCommand, naam, gebruikersnaam, mailadres, wachtwoord);
-        Response.Redirect("~/");
-    }
-    //Inloggen
-    if (Request.Form["inlog"] != null && Validation.IsValid())
-    {
-        mailadres = Request.Form["mailadres"];
-        wachtwoord = Request.Form["wachtwoord"];
-        string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\GEHEELNAAM.mdf;Integrated Security=True";
-        string provider = "System.Data.SqlClient";
-        Database db = Database.OpenConnectionString(connectionString, provider);
-        //Hieronder geef je aan dat apestaartje 0 mailadres is
-        var query = db.QuerySingle("SELECT Wachtwoord Registratie FROM Bezoekers WHERE Mailadres=@0", mailadres);
-        if (query.Wachtwoord == wachtwoord)
-        {
-            Session["ID"] = query.Registratie;
-
-        }
-        else
+        if (Request.Form["regButton"] != null)
         {
 
+
+            naam = Request.Form["regNaam"];
+            gebruikersnaam = Request.Form["regGebNaam"];
+            mailadres = Request.Form["regMail"];
+            wachtwoord = Request.Form["regPass"];
+
+
+            var insertCommand = "INSERT INTO Registratie (Naam, Gebruikersnaam, Mailadres, Wachtwoord) Values(@0, @1, @2, @3)";
+            db.Execute(insertCommand, naam, gebruikersnaam, mailadres, wachtwoord);
+            Response.Redirect("~/LandingPage2.cshtml");
         }
-        db.Close();
+
+        else if (Request.Form["logButton"] != null)
+        {
+            //login
+            mailadres = Request.Form["logMail"];
+            wachtwoord = Request.Form["logPass"];
+
+            //Hieronder geef je aan dat apestaartje 0 mailadres is
+            var query = db.QuerySingle("SELECT Wachtwoord, Id FROM Registratie WHERE Mailadres=@0", mailadres);
+            if (query.Wachtwoord == wachtwoord)
+            {
+                Session["ID"] = query.Id;
+
+            }
+            else
+            {
+
+            }
+            db.Close();
+        }
     }
+
+    ////Inloggen
+    //if (Request.Form["inlog"] != null && Validation.IsValid())
+    //{
+    //    mailadres = Request.Form["mailadres"];
+    //    wachtwoord = Request.Form["wachtwoord"];
+
+    //    //Hieronder geef je aan dat apestaartje 0 mailadres is
+    //    var query = db.QuerySingle("SELECT Wachtwoord Registratie FROM Bezoekers WHERE Mailadres=@0", mailadres);
+    //    if (query.Wachtwoord == wachtwoord)
+    //    {
+    //        Session["ID"] = query.Registratie;
+
+    //    }
+    //    else
+    //    {
+
+    //    }
+    //    db.Close();
+    //}
+
+
 }
 <div id="background">
 <div id="home">
@@ -308,19 +342,19 @@
                 <h3>Registreren</h3>
                 <form method="post">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Naam*" value="@Request.Form["naam"]" />
+                        <input name="regNaam" type="text" class="form-control" placeholder="Naam*" />
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Gebruikersnaam*" value="@Request.Form["gebruikersnaam"]" />
+                        <input name="regGebNaam" type="text" class="form-control" placeholder="Gebruikersnaam*" />
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="E-mailadres*" value="@Request.Form["mailadres"]" />
+                        <input name="regMail" type="text" class="form-control" placeholder="E-mailadres*"  />
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Wachtwoord*" value="@Request.Form["wachtwoord"]" />
+                        <input name="regPass" type="password" class="form-control" placeholder="Wachtwoord*"  />
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btnSubmit" value="Registreer" />
+                        <input name="regButton" type="submit" class="btnSubmit" value="Registreer" />
                     </div>
 
                 </form>
@@ -330,13 +364,13 @@
                 <h3>Inloggen</h3>
                 <form method="post">
                     <div class="form-group">
-                        <input name="mailadres" type="text" class="form-control" placeholder="Emailadres" value="@Request.QueryString["mailadres"]" />
+                        <input name="logMail" type="text" class="form-control" placeholder="Emailadres" value="@Request.QueryString["mailadres"]" />
                     </div>
                     <div class="form-group">
-                        <input name="wachtwoord" type="password" class="form-control" placeholder="Wachtwoord" value="@Request.QueryString["wachtwoord"]" />
+                        <input name="logPass" type="password" class="form-control" placeholder="Wachtwoord" value="@Request.QueryString["wachtwoord"]" />
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btnSubmit" value="Login" />
+                        <input name="logButton" type="submit" class="btnSubmit" value="Login" />
                     </div>
 
                 </form>
