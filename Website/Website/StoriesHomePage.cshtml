@@ -2,6 +2,7 @@
 @using System.Net
 @{
     Layout = "/Layout/_LayoutStoriesHomePage.cshtml";
+    Page.Title = "De verhalen";
 }
 @{
     string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Bezoekers.mdf;Integrated Security=True";
@@ -14,7 +15,7 @@
 
 }
 <main>
-   
+   <div id="background">
     <div class="break"></div>
     <div id="list" class="container">
         <div id="empty"></div>
@@ -114,5 +115,5 @@
         </div>
     </div>
 
-    
+    </div>
 </main>
