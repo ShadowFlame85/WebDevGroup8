@@ -1,0 +1,12 @@
+﻿main {
+    font-family: "montserrat", sans-serif;
+    background: #354737;
+}
+h1 {
+    color: #b35417;
+    text-transform: uppercase;
+    font-size: 40px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    text-align: center;
+}
