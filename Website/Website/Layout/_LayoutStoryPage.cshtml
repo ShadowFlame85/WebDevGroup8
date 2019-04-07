@@ -5,6 +5,8 @@
         @RenderSection("head", required: false)
     </head>
     <body>
+        @RenderPage("~/Layout/_Header.cshtml")
         @RenderBody()
+        @RenderPage("~/Layout/_Footer.cshtml")
     </body>
 </html>
