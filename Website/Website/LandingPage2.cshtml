@@ -182,16 +182,16 @@
         <script type="text/javascript">
 
             var locations = [
-                ['Antelope Canyon', 36.861910, -111.374330, 10],
-                ['National Park Grand Canyon', 36.115161, -112.115688, 9],
-                ['Hollywood', 34.092889, -118.325963, 8],
-                ['Los Angeles', 34.052235, -118.243683, 7],
-                ['Alcatraz Island', 37.828125, -122.422844],
-                ['Organ Pipe Cactus National Monument', 32.038374, -112.939584],
-                ['Calico Ghost Town', 34.943572, -116.865911, 4],
-                ['Joshua Tree', 33.7883944, -115.8982222, 3],
-                ['Sequoia National Park', 36.486366, -118.565750, 2],
-                ['Yosemite National Park', 37.865101, -119.538330, 1]
+                ['Antelope Canyon', 36.861910, -111.374330, 10, '../Comments tester.cshtml'],
+                ['National Park Grand Canyon', 36.115161, -112.115688, 9, '../Comments tester.cshtml'],
+                ['Hollywood', 34.092889, -118.325963, 8, '../Comments tester.cshtml'],
+                ['Los Angeles', 34.052235, -118.243683, 7, '../Comments tester.cshtml'],
+                ['Alcatraz Island', 37.828125, -122.422844, '../Comments tester.cshtml'],
+                ['Organ Pipe Cactus National Monument', 32.038374, -112.939584, '../Comments tester.cshtml'],
+                ['Calico Ghost Town', 34.943572, -116.865911, 4, '../Comments tester.cshtml'],
+                ['Joshua Tree', 33.7883944, -115.8982222, 3, '../Comments tester.cshtml'],
+                ['Sequoia National Park', 36.486366, -118.565750, 2, '../Comments tester.cshtml'],
+                ['Yosemite National Park', 37.865101, -119.538330, 1, '../Comments tester.cshtml']
             ];
 
             var map = new google.maps.Map(document.getElementById('map'), {
@@ -206,13 +206,16 @@
             for (i = 0; i < locations.length; i++) {
                 marker = new google.maps.Marker({
                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                    map: map
+                    map: map,
+                    
+                    url: locations[i][4]
                 });
 
                 google.maps.event.addListener(marker, 'click', (function (marker, i) {
                     return function () {
                         infowindow.setContent(locations[i][0]);
                         infowindow.open(map, marker);
+                        window.location.href = this.url;
                     }
                 })(marker, i));
             }
