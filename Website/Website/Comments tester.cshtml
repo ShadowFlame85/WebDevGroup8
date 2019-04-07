@@ -1,0 +1,105 @@
+﻿@using WebMatrix.Data
+@{ 
+    Layout = "/Layout/_LayoutStoriesHomePage.cshtml";
+}
+@{
+            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Bezoekers.mdf;Integrated Security=True";
+            string provider = "System.Data.SqlClient";
+            Database db = Database.OpenConnectionString(connectionString, provider);
+        
+    }
+
+@{ 
+        var comment = "";
+        
+        var Story_Id = 1;
+        DateTime datum;
+        var userId = Session["ID"];
+
+    if (IsPost)
+    {
+        if (Request.Form["commentButton"] != null && userId != null)
+        {
+
+
+        
+            comment = Request.Form["comment"];
+            datum = DateTime.Now;
+            var insertCommand = "INSERT INTO Comments (Datum, Naam, Registratie_Id, Story_Id) Values(@0, @1, @2, @3)";
+        db.Execute(insertCommand, datum, comment, userId, Story_Id);
+            Response.Redirect("~/Comments tester.cshtml");
+        }
+} }
+<br />
+<br />
+<br /><br />
+
+<main>
+
+
+
+
+
+
+    <div class="container">
+        <div class="row bootstrap snippets">
+            <div class="col-md-6 col-md-offset-2 col-sm-12">
+                <div class="comment-wrapper">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Comment panel
+                        </div>
+                        <div class="panel-body">
+
+                            <br>
+                            @if (userId != null)
+                            {
+                                <form method="post">
+                                    <textarea name="comment" class="form-control" placeholder="write a comment..." rows="3"></textarea>
+                                    <button name="commentButton" type="submit" class="btn btn-info pull-right">Post</button>
+                                    </form>
+                                    }
+                                    else
+                                    {
+                                    <textarea name="comment" class="form-control" placeholder="U moet ingelogd zijn voordat u een comment kunt plaatsen" rows="3" disabled></textarea>
+                                    // <button name="commentButton" type="button" class="btn btn-info pull-right" disabled>Post</button>
+                                    }
+                                    <div class="clearfix"></div>
+                                    <hr>
+                                    <ul class="media-list">
+                                        @{
+                                            var query = db.Query("SELECT Comments.Datum, Registratie.Gebruikersnaam, Comments.Naam  FROM [Comments] JOIN Registratie ON [Comments].Registratie_Id = Registratie.Id WHERE Story_Id=@0 ORDER BY Comments.Datum DESC",Story_Id);
+                                            foreach (var row in query)
+                                            {
+                                                
+
+                                                <li class="media">
+                                                    <div class="media-body">
+                                                        <span class="text-muted pull-right">
+                                                            <small class="text-muted">@row.Datum</small>
+                                                        </span>
+                                                        <strong class="text-success">@row.Gebruikersnaam</strong>
+                                                        <p>
+                                                            @row.Naam
+                                                        </p>
+                                                    </div>
+                                                </li>
+
+
+                                            }
+
+
+                                        }
+
+
+
+
+                                    </ul>
+                            </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>
