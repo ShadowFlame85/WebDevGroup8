@@ -15,13 +15,13 @@ CREATE TABLE Stories (
     Id     INT            IDENTITY (1, 1) NOT NULL,
     Titel  NVARCHAR (100) NOT NULL,
     Auteur NVARCHAR (50)  NULL,
-    Datum  DATETIME       NULL,
+    Datum  DATE           NULL,
     PRIMARY KEY CLUSTERED (Id ASC)
 );
 CREATE TABLE Comments (
     Id             INT           IDENTITY (1, 1) NOT NULL,
     Datum          DATETIME      NOT NULL,
-    Comment        TEXT			 NOT NULL,
+    Comment        TEXT          NOT NULL,
     Registratie_Id INT           NOT NULL,
     Story_Id       INT           NOT NULL,
     PRIMARY KEY CLUSTERED (Id ASC),
@@ -41,7 +41,6 @@ INSERT INTO Registratie (Id, Naam, Gebruikersnaam, Mailadres, Wachtwoord) VALUES
 INSERT INTO Registratie (Id, Naam, Gebruikersnaam, Mailadres, Wachtwoord) VALUES (2, N'Maxime', N'maxime123', N'maxime@mail.com', N'maxime321')
 INSERT INTO Registratie (Id, Naam, Gebruikersnaam, Mailadres, Wachtwoord) VALUES (3, N'Jorn', N'jorn123', N'jorn@mail.com', N'jorn321')
 INSERT INTO Registratie (Id, Naam, Gebruikersnaam, Mailadres, Wachtwoord) VALUES (4, N'Jacco', N'jacco123', N'jacco@mail.com', N'jacco321')
-INSERT INTO Registratie (Id, Naam, Gebruikersnaam, Mailadres, Wachtwoord) VALUES (4, N'Wybren', N'wybren123', N'wybren@mail.com', N'wybren321')
 SET IDENTITY_INSERT Registratie OFF
 
 SET IDENTITY_INSERT Stories ON
@@ -52,10 +51,10 @@ INSERT INTO Stories (Id, Titel, Auteur, Datum) VALUES (4, N'Tjeerd', N'Chris Bee
 SET IDENTITY_INSERT Stories OFF
 
 SET IDENTITY_INSERT Comments ON
-INSERT INTO Comments (Id, Datum, Naam, Registratie_Id, Story_Id) VALUES (1, N'1975-01-01', N'Bouke', 1, 1)
-INSERT INTO Comments (Id, Datum, Naam, Registratie_Id, Story_Id) VALUES (2, N'1975-01-02', N'Jorn', 2, 2)
-INSERT INTO Comments (Id, Datum, Naam, Registratie_Id, Story_Id) VALUES (3, N'1975-01-03', N'Chris', 3, 3)
-INSERT INTO Comments (Id, Datum, Naam, Registratie_Id, Story_Id) VALUES (4, N'1975-01-04', N'Maxime', 4, 4)
+INSERT INTO Comments (Id, Datum, Comment, Registratie_Id, Story_Id) VALUES (1, N'1975-01-01', N'Bouke', 1, 1)
+INSERT INTO Comments (Id, Datum, Comment, Registratie_Id, Story_Id) VALUES (2, N'1975-01-02', N'Jorn', 2, 2)
+INSERT INTO Comments (Id, Datum, Comment, Registratie_Id, Story_Id) VALUES (3, N'1975-01-03', N'Chris', 3, 3)
+INSERT INTO Comments (Id, Datum, Comment, Registratie_Id, Story_Id) VALUES (4, N'1975-01-04', N'Maxime', 4, 4)
 SET IDENTITY_INSERT Comments OFF
 
 SET IDENTITY_INSERT Images ON
