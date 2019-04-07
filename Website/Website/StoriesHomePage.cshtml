@@ -10,7 +10,7 @@
     string searchstring = null;
     searchstring = Request.Form["search"];
     string extraRow = "</div> <div class='row'>";
-
+    List<int> usedId = new List<int>();
 
 }
 <main>
@@ -30,12 +30,17 @@
                 {
 
                     //count stories and build completely
-                    var query = db.Query("SELECT Titel, ImageURL  FROM [Stories] JOIN Images ON [Stories].Id = Images.Story_Id");
+                    var query = db.Query("SELECT Titel, ImageURL, Story_Id  FROM [Stories] JOIN Images ON [Stories].Id = Images.Story_Id");
                     int i = 0;
 
                     foreach (var row in query)
                     {
+                        int Id = row.Story_Id;
 
+                        if (usedId.Contains(row.Story_Id))
+                        {
+                        }
+                        else {
                         <div class="col-md-3">
                             <div class="hovereffect">
                                 <img class="img-responsive" src="~/Image/DSC_6565.JPG" alt="">
@@ -47,31 +52,32 @@
                                 </div>
                             </div>
                         </div>
-                        i++;
-                        if (i == 4)
-                        {
+                            i++;
+                            if (i == 4)
+                            {
                             @Html.Raw(extraRow);
+                                    i = 0;
+                                }
+                            }
+                        usedId.Add(Id);
+
                         }
-
-
+                        i = 0;
 
                     }
-
-
-                }
-                else
-                {
-
-                    var query = db.Query("SELECT Titel, ImageURL  FROM [Stories] JOIN Images ON [Stories].Id = Images.Story_Id WHERE Titel Like '%@0%'", searchstring);
-                    //sql CONTAINS query, then count and build accordingly
-                    foreach (var row in query)
+                    else
                     {
+
+                        var query = db.Query("SELECT Titel, ImageURL  FROM [Stories] JOIN Images ON [Stories].Id = Images.Story_Id WHERE Titel Like '%@0%'", searchstring);
+                        //sql CONTAINS query, then count and build accordingly
+                        foreach (var row in query)
+                        {
                         // HTML code
                         <p>@row.ImageURL - @row.Titel</p>
-                    }
+                        }
 
+                    }
                 }
-            }
 
 
         </div>
