@@ -1,4 +1,5 @@
 ﻿@using WebMatrix.Data
+@using System.Net
 @{
     Layout = "/Layout/_LayoutStoriesHomePage.cshtml";
 }
@@ -8,43 +9,79 @@
     Database db = Database.OpenConnectionString(connectionString, provider);
     string searchstring = null;
     searchstring = Request.Form["search"];
-    
-
-    if (searchstring == null || searchstring == "")
-    {
-        //count stories and build completely
-        var query = db.Query("SELECT Titel, ImageURL  FROM [Stories] JOIN Images ON [Stories].Id = Images.Story_Id");
-
-        foreach (var row in query)
-        {
-<div class="col-md-3">
-    <div class="hovereffect">
-        <img class="img-responsive" src="http://placehold.it/350x250" alt="">
-        <div class="overlay">
-            <h2>row.Titel</h2>
-            <p>
-                <a href="@row.ImageURL ">LINK HERE</a>
-            </p>
-        </div>
-    </div>
-</div>
-            <p>@row.ImageURL - @row.Titel</p>
-        }
-        
-    }
-    else
-    {
-        var query = db.Query("SELECT Titel, ImageURL  FROM [Stories] JOIN Images ON [Stories].Id = Images.Story_Id WHERE Titel Like '%@0%'", searchstring);
-        //sql CONTAINS query, then count and build accordingly
-        foreach (var row in query)
-        {
-            // HTML code
-            <p>@row.ImageURL - @row.Titel</p>
-        }
-        
-    }
+    string extraRow = "</div> <div class='row'>";
+    List<int> usedId = new List<int>();
 
 }
 <main>
-    <h1>De verhalen</h1>
+   
+    <div class="break"></div>
+    <div id="list" class="container">
+        <div id="empty"></div>
+
+        <div class="listtitle">
+
+            <h2>Verhalen</h2>
+        </div>
+
+        <div class="row">
+            @{
+                if (searchstring == null || searchstring == "")
+                {
+
+                    //count stories and build completely
+                    var query = db.Query("SELECT Titel, ImageURL, Story_Id  FROM [Stories] JOIN Images ON [Stories].Id = Images.Story_Id");
+                    int i = 0;
+
+                    foreach (var row in query)
+                    {
+                        int Id = row.Story_Id;
+
+                        if (usedId.Contains(row.Story_Id))
+                        {
+                        }
+                        else {
+                        <div class="col-md-3">
+                            <div class="hovereffect">
+                                <img class="img-responsive" src="~/Image/DSC_6565.JPG" alt="">
+                                <div class="overlay">
+                                    <h2>@row.Titel</h2>
+                                    <p>
+                                        <a href="@row.ImageURL">Lees hier</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                            i++;
+                            if (i == 4)
+                            {
+                            @Html.Raw(extraRow);
+                                    i = 0;
+                                }
+                            }
+                        usedId.Add(Id);
+
+                        }
+                        i = 0;
+
+                    }
+                    else
+                    {
+
+                        var query = db.Query("SELECT Titel, ImageURL  FROM [Stories] JOIN Images ON [Stories].Id = Images.Story_Id WHERE Titel Like '%@0%'", searchstring);
+                        //sql CONTAINS query, then count and build accordingly
+                        foreach (var row in query)
+                        {
+                        // HTML code
+                        <p>@row.ImageURL - @row.Titel</p>
+                        }
+
+                    }
+                }
+
+
+        </div>
+    </div>
+
+    
 </main>
