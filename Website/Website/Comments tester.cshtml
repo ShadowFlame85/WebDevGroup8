@@ -2,13 +2,14 @@
 @{ 
     Layout = "/Layout/_LayoutStoriesHomePage.cshtml";
 }
-
 @{
             string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Bezoekers.mdf;Integrated Security=True";
             string provider = "System.Data.SqlClient";
             Database db = Database.OpenConnectionString(connectionString, provider);
         
-  
+    }
+
+@{ 
         var comment = "";
         
         var Story_Id = 1;
@@ -26,12 +27,9 @@
             datum = DateTime.Now;
             var insertCommand = "INSERT INTO Comments (Datum, Comment, Registratie_Id, Story_Id) Values(@0, @1, @2, @3)";
         db.Execute(insertCommand, datum, comment, userId, Story_Id);
-            Response.Redirect("~/Stories/" + Story_Id);
+            Response.Redirect("~/Comments tester.cshtml");
         }
 } }
-
-
-
 <br />
 <br />
 <br /><br />
