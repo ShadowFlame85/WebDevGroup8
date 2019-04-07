@@ -39,7 +39,7 @@ body {
         top: 0;
         width: 100%;
         height: 100%;
-        background-image: url("https://www.sprout.nl/sites/default/files/styles/large/public/field/image/new-york-skyline-amerika-internationaal-handel-pixabay.jpg?itok=UqW4_uIE");
+        background-image: url(".../Image/DSC_5172.JPG");
         background-repeat: no-repeat;
         background-size: cover;
         opacity: 0.2;
@@ -207,7 +207,10 @@ body {
         transform: translate3d(0,0,0);
     }
 /*Gallery*/
-
+.view{
+    width: 100%;
+    height: 100vh !important;
+}
 /*Inloggen en registreren*/
 .login-container {
     margin-top: 5%;
