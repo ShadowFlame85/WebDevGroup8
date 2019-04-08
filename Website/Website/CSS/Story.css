@@ -27,14 +27,26 @@ body {
 .ombouw {
     background: #b37b17;
 }
-.ombouw h1 {
+    .ombouw h1 {
+        color: #b35417;
+        text-transform: uppercase;
+        font-size: 40px;
+        font-weight: 900;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+.ombouw2 {
+    background: #b37b17;
+}
+.ombouw h3 {
     color: #b35417;
     text-transform: uppercase;
-    font-size: 40px;
+    font-size: 20px;
     font-weight: 900;
     margin-bottom: 20px;
     text-align: center;
 }
+
 /*Footer*/
 footer {
     text-align: center;
