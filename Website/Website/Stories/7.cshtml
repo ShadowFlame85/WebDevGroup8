@@ -1,3 +1,119 @@
-﻿@{
-    
+﻿@using WebMatrix.Data
+@{
+    /**/
+
+    Page.Title = "Las Vegas";
+    Layout = "~/Layout/_LayoutStoryPage.cshtml";
+}
+@{
+    string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Bezoekers.mdf;Integrated Security=True";
+    string provider = "System.Data.SqlClient";
+    Database db = Database.OpenConnectionString(connectionString, provider);
+
+
+    var comment = "";
+
+    var Story_Id = 7;
+    DateTime datum;
+    var userId = Session["ID"];
+
+    if (IsPost)
+    {
+        if (Request.Form["commentButton"] != null && userId != null)
+        {
+
+
+
+            comment = Request.Form["comment"];
+            datum = DateTime.Now;
+            var insertCommand = "INSERT INTO Comments (Datum, Comment, Registratie_Id, Story_Id) Values(@0, @1, @2, @3)";
+            db.Execute(insertCommand, datum, comment, userId, Story_Id);
+            Response.Redirect("~/Stories/" + Story_Id + ".cshtml");
+        }
+    }
+    List<string> fotolijst = new List<string>();
+    var fotos = db.Query("SELECT ImageURL  FROM Images WHERE Story_Id=@0 ", Story_Id);
+    foreach (var row in fotos)
+    {
+        fotolijst.Add(row.ImageURL);
+    }
+}
+<main>
+    <div id="background">
+        <div id="empty"></div>
+        <div class="container">
+            <div class="ombouw">
+                <h1>Las Vegas (Nevada)</h1>
+                <p>
+                    Las Vegas staat bekend om de constante feeststemming die hier heerst. Je kunt  de chique casino’s, bars, clubs en shows bezoeken aan De Las Vegas Strip.  Alle hotels aan De Strip beschikken over een een casino. Zo ook ons hotel; De Stratosphere Hotel, Casino en Tower.<br />
+
+                    Op de top van de Stratosphere Tower zijn vier verschillende attracties waarvan er drie de hoogste drie in de wereld zijn. Geopende attracties:<br />
+                    <ul>
+                    <li>Big Shot, met een hoogte van 329 meter de hoogste attractie ter wereld.</li>
+
+                    <li>Insanity, met een hoogte van 270 meter de op een na hoogste attractie ter wereld.</li>
+
+                    <li>X-Scream, met een hoogte van 264 meter de op twee na hoogste attractie ter wereld.</li>
+
+                    <li>SkyJump, 263 meter hoog.</li>
+                        </ul>
+                </p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row bootstrap snippets">
+                <div class="col-md-6 col-md-offset-2 col-sm-12">
+                    <div class="comment-wrapper">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                Comment panel
+                            </div>
+                            <div class="panel-body">
+
+                                <br>
+                                @if (userId != null)
+                                {
+                                    <form method="post">
+                                        <textarea name="comment" class="form-control" placeholder="write a comment..." rows="3"></textarea>
+                                        <button name="commentButton" type="submit" class="btn btn-info pull-right">Post</button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <textarea name="comment" class="form-control" placeholder="U moet ingelogd zijn voordat u een comment kunt plaatsen" rows="3" disabled></textarea>
+                                    // <button name="commentButton" type="button" class="btn btn-info pull-right" disabled>Post</button>
+                                }
+                                <div class="clearfix"></div>
+                                <hr>
+                                <ul class="media-list">
+                                    @{
+                                        var query = db.Query("SELECT Comments.Datum, Registratie.Gebruikersnaam, Comments.Comment  FROM [Comments] JOIN Registratie ON [Comments].Registratie_Id = Registratie.Id WHERE Story_Id=@0 ORDER BY Comments.Datum DESC", Story_Id);
+                                        foreach (var row in query)
+                                        {
+
+
+                                            <li class="media">
+                                                <div class="media-body">
+                                                    <span class="text-muted pull-right">
+                                                        <small class="text-muted">@row.Datum</small>
+                                                    </span>
+                                                    <strong class="text-success">@row.Gebruikersnaam</strong>
+                                                    <p>
+                                                        @row.Comment
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
 }
