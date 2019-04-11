@@ -12,6 +12,7 @@
 
 
     var comment = "";
+    <a href="~/Stories/10.cshtml">~/Stories/10.cshtml</a>
 
     var Story_Id = 10;
     DateTime datum;
@@ -64,14 +65,14 @@
                                 <br>
                                 @if (userId != null)
                                 {
-                                    <form method="post">
-                                        <textarea name="comment" class="form-control" placeholder="write a comment..." rows="3"></textarea>
-                                        <button name="commentButton" type="submit" class="btn btn-info pull-right">Post</button>
-                                    </form>
+                                <form method="post">
+                                    <textarea name="comment" class="form-control" placeholder="write a comment..." rows="3"></textarea>
+                                    <button name="commentButton" type="submit" class="btn btn-info pull-right">Post</button>
+                                </form>
                                 }
                                 else
                                 {
-                                    <textarea name="comment" class="form-control" placeholder="U moet ingelogd zijn voordat u een comment kunt plaatsen" rows="3" disabled></textarea>
+                                <textarea name="comment" class="form-control" placeholder="U moet ingelogd zijn voordat u een comment kunt plaatsen" rows="3" disabled></textarea>
                                     // <button name="commentButton" type="button" class="btn btn-info pull-right" disabled>Post</button>
                                 }
                                 <div class="clearfix"></div>
@@ -83,17 +84,17 @@
                                         {
 
 
-                                            <li class="media">
-                                                <div class="media-body">
-                                                    <span class="text-muted pull-right">
-                                                        <small class="text-muted">@row.Datum</small>
-                                                    </span>
-                                                    <strong class="text-success">@row.Gebruikersnaam</strong>
-                                                    <p>
-                                                        @row.Comment
-                                                    </p>
-                                                </div>
-                                            </li>
+                                        <li class="media">
+                                            <div class="media-body">
+                                                <span class="text-muted pull-right">
+                                                    <small class="text-muted">@row.Datum</small>
+                                                </span>
+                                                <strong class="text-success">@row.Gebruikersnaam</strong>
+                                                <p>
+                                                    @row.Comment
+                                                </p>
+                                            </div>
+                                        </li>
                                         }
                                     }
                                 </ul>
